@@ -13,6 +13,3 @@ class EventCountDown extends StatelessWidget {
   }
 }
 
-//ToDo: Moamen test branch
-//ToDo: Noureddine test branch
-//ToDo: Mahmoud test branch
