@@ -1,3 +1,4 @@
+import 'package:eventcountdown/screens/new_event_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,9 @@ class EventCountDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const NewEventScreen(),
+    );
   }
 }
