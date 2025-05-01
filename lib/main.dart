@@ -1,6 +1,13 @@
-import 'package:flutter/material.dart';
 
-void main() {
+import 'package:eventcountdown/view_event_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+void main() async{
+  WidgetsBinding widgetsFlutterBinding=WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
+  await Future.delayed(const Duration(seconds: 1));
+  FlutterNativeSplash.remove();
   runApp(const EventCountDown());
 }
 
@@ -9,10 +16,16 @@ class EventCountDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Event CountDown',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black54),
+        useMaterial3: true,
+      ),
+      home: const ViewEventScreen(),
+
+
+    );
   }
 }
-
-//ToDo: Moamen test branch
-//ToDo: Nour test branch
-//ToDo: mahmoud test branch
