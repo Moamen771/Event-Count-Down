@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:eventcountdown/services/textfields_validators.dart';
 import 'package:eventcountdown/widgets/date_picker_text_field.dart';
@@ -7,8 +6,7 @@ import 'package:eventcountdown/widgets/save_button.dart';
 import 'package:flutter/material.dart';
 
 class NewEventScreen extends StatefulWidget {
-  const NewEventScreen({super.key, this.education});
-  final dynamic education;
+  const NewEventScreen({super.key});
 
   @override
   State<NewEventScreen> createState() => _NewEventScreenState();
@@ -21,7 +19,9 @@ class _NewEventScreenState extends State<NewEventScreen> {
   final _timeController = TextEditingController();
   final _locationeController = TextEditingController();
 
+  // ignore: unused_field, prefer_final_fields
   bool _initialized = false;
+  // ignore: prefer_final_fields
   bool _editMode = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
