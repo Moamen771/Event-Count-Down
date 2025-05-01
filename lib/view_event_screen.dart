@@ -5,9 +5,14 @@ class ViewEventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Column(children: [
-      
-      Text("Welcome to Event CountDown")
-    ],)),);
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Text("Welcome to Event CountDown"),
+          ],
+        ),
+      ),
+    );
   }
 }
