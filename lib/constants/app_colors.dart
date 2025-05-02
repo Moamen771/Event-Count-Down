@@ -8,3 +8,8 @@ class AppColors {
   static const whiteColor = Color(0xFFFFFFFF);
   static const blackColor = Color(0xFF000000);
 }
+
+// todo: F1F3F8
+// todo: D6E0F0
+// todo: 8D93AB
+// todo: 393B44
