@@ -45,10 +45,11 @@ class _NewEventScreenState extends State<NewEventScreen> {
       appBar: AppBar(
         title: const Text(
           "New Event",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: AppColors.whiteColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: AppColors.darkColor,
+        backgroundColor: AppColors.primaryColor,
       ),
       body: Stack(
         children: [

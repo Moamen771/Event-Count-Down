@@ -28,7 +28,7 @@ class SaveButton extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: AppColors.blackColor,
+                color: AppColors.primaryColor,
               ),
               child: const Center(
                 child: Padding(
