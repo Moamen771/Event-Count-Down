@@ -1,5 +1,6 @@
 import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:eventcountdown/services/textfields_validators.dart';
+import 'package:eventcountdown/widgets/description_textfield.dart';
 import 'package:eventcountdown/widgets/date_picker_text_field.dart';
 import 'package:eventcountdown/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/widgets/save_button.dart';
@@ -86,10 +87,9 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   const SizedBox(height: 15),
 
                   const SizedBox(height: 15),
-                  RoundedTextField(
+                  DescriptionTextField(
                     validator: Validators().requiredFieldValidator,
                     controller: _descriptionController,
-                    keyboardType: TextInputType.name,
                     labelText: "Description*",
                   ),
                   //Year start date textfield

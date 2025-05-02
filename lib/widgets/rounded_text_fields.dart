@@ -39,7 +39,7 @@ class RoundedTextField extends StatelessWidget {
           onChanged: onChanged, // Pass onChanged to TextFormField
           controller: controller,
           validator: validator,
-          cursorColor: AppColors.blackColor,
+          cursorColor: AppColors.primaryColor,
           style: const TextStyle(
             color: AppColors.blackColor,
             fontSize: 20,
@@ -56,17 +56,17 @@ class RoundedTextField extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.blackColor),
+              borderSide: const BorderSide(color: AppColors.darkerColor),
               borderRadius: BorderRadius.circular(
                   12.0), // Adjust radius for rounded corners
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.blackColor),
+              borderSide: const BorderSide(color: AppColors.darkerColor),
               borderRadius: BorderRadius.circular(12.0),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: AppColors.blackColor, width: 2.0),
+                  const BorderSide(color: AppColors.darkerColor, width: 2.0),
               borderRadius: BorderRadius.circular(12.0),
             ),
             errorBorder: OutlineInputBorder(

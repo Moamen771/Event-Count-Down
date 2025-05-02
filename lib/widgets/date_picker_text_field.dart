@@ -207,7 +207,7 @@ class DatePickerField extends StatelessWidget {
           decoration: InputDecoration(
             suffixIcon: Icon(
               Icons.arrow_drop_down_circle,
-              color: AppColors.blackColor,
+              color: AppColors.primaryColor,
             ),
             contentPadding: const EdgeInsets.symmetric(
               vertical: 10.0,
@@ -227,16 +227,16 @@ class DatePickerField extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.blackColor),
+              borderSide: const BorderSide(color: AppColors.darkerColor),
               borderRadius: BorderRadius.circular(12.0),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.blackColor),
+              borderSide: const BorderSide(color: AppColors.darkerColor),
               borderRadius: BorderRadius.circular(12.0),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: AppColors.blackColor, width: 2.0),
+                  const BorderSide(color: AppColors.darkerColor, width: 2.0),
               borderRadius: BorderRadius.circular(12.0),
             ),
             errorBorder: OutlineInputBorder(
