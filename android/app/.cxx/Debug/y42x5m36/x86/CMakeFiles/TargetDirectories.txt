@@ -1,0 +1,2 @@
+D:/Flutter Project/Event-Count-Down/android/app/.cxx/Debug/y42x5m36/x86/CMakeFiles/edit_cache.dir
+D:/Flutter Project/Event-Count-Down/android/app/.cxx/Debug/y42x5m36/x86/CMakeFiles/rebuild_cache.dir
