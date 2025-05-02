@@ -1,8 +1,10 @@
+import 'package:eventcountdown/screens/new_event_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() async{
-  WidgetsBinding widgetsFlutterBinding=WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsBinding widgetsFlutterBinding =
+      WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
   await Future.delayed(const Duration(seconds: 1));
   FlutterNativeSplash.remove();
@@ -14,6 +16,9 @@ class EventCountDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: NewEventScreen(),
+    );
   }
 }
