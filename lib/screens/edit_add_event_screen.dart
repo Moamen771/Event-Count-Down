@@ -6,14 +6,15 @@ import 'package:eventcountdown/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/widgets/save_button.dart';
 import 'package:flutter/material.dart';
 
-class NewEventScreen extends StatefulWidget {
-  const NewEventScreen({super.key});
+class EditAddEventScreen extends StatefulWidget {
+  const EditAddEventScreen({super.key, this.editMode = false});
+  final bool editMode;
 
   @override
-  State<NewEventScreen> createState() => _NewEventScreenState();
+  State<EditAddEventScreen> createState() => _EditAddEventScreenState();
 }
 
-class _NewEventScreenState extends State<NewEventScreen> {
+class _EditAddEventScreenState extends State<EditAddEventScreen> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _dateController = TextEditingController();
@@ -22,8 +23,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
   // ignore: unused_field, prefer_final_fields
   bool _initialized = false;
-  // ignore: prefer_final_fields
-  bool _editMode = false;
+  
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -40,6 +40,16 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.editMode) {
+
+      //====Replace with data from database====
+
+      // _titleController.text = widget.event.firstName!;
+      // _descriptionController.text = widget.event.lastName!;
+      // _dateController.text = widget.event.phone!;
+      // _timeController.text = widget.event.emailAddress!;
+      // _locationeController.text = widget.event.country!;
+    }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -126,7 +136,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  _editMode
+                  widget.editMode
                       ? Center(
                           child: Container(
                             decoration: BoxDecoration(
