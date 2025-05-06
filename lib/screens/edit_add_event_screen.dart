@@ -21,8 +21,6 @@ class _EditAddEventScreenState extends State<EditAddEventScreen> {
   final _timeController = TextEditingController();
   final _locationeController = TextEditingController();
 
-  // ignore: unused_field, prefer_final_fields
-  bool _initialized = false;
   
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
