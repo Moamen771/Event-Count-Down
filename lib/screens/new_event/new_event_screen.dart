@@ -1,9 +1,9 @@
 import 'package:eventcountdown/constants/app_colors.dart';
+import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.dart';
+import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
+import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
+import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
 import 'package:eventcountdown/services/textfields_validators.dart';
-import 'package:eventcountdown/widgets/description_textfield.dart';
-import 'package:eventcountdown/widgets/date_picker_text_field.dart';
-import 'package:eventcountdown/widgets/rounded_text_fields.dart';
-import 'package:eventcountdown/widgets/save_button.dart';
 import 'package:flutter/material.dart';
 
 class NewEventScreen extends StatefulWidget {
@@ -18,10 +18,11 @@ class _NewEventScreenState extends State<NewEventScreen> {
   final _descriptionController = TextEditingController();
   final _dateController = TextEditingController();
   final _timeController = TextEditingController();
-  final _locationeController = TextEditingController();
+  final _locationController = TextEditingController();
 
   // ignore: unused_field, prefer_final_fields
   bool _initialized = false;
+
   // ignore: prefer_final_fields
   bool _editMode = false;
 
@@ -33,7 +34,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
     _descriptionController.dispose();
     _dateController.dispose();
     _timeController.dispose();
-    _locationeController.dispose();
+    _locationController.dispose();
 
     super.dispose();
   }
@@ -118,7 +119,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   const SizedBox(height: 15),
                   RoundedTextField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _locationeController,
+                    controller: _locationController,
                     keyboardType: TextInputType.name,
                     labelText: "Location*",
                   ),
