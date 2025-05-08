@@ -9,9 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: HomeScreenBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("add event");
-        },
+        onPressed: () {},
         backgroundColor: Colors.red,
         child: Icon(Icons.add),
       ),

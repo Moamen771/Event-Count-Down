@@ -1,10 +1,10 @@
-import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.dart';
 import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
 import 'package:eventcountdown/services/textfields_validators.dart';
 import 'package:flutter/material.dart';
+import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
   const NewEventScreen({super.key});

@@ -1,8 +1,8 @@
-import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:eventcountdown/screens/home/widgets/custom_app_bar.dart';
 import 'package:eventcountdown/screens/home/widgets/upcoming_event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import '../../../utils/app_colors.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
