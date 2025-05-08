@@ -1,0 +1,2 @@
+C:/development/Training/DEPI final project/Event-Count-Down/android/app/.cxx/Debug/383o572o/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/development/Training/DEPI final project/Event-Count-Down/android/app/.cxx/Debug/383o572o/armeabi-v7a/CMakeFiles/rebuild_cache.dir

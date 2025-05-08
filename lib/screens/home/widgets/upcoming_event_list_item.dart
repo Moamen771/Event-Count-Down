@@ -1,33 +1,24 @@
+import 'package:eventcountdown/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class UpComingEventListItem extends StatelessWidget {
-  const UpComingEventListItem(
-      {super.key,
-      required this.title,
-      required this.year,
-      required this.month,
-      required this.day,
-      required this.hour,
-      required this.minute});
+import '../../../models/event.dart';
 
-  final String title;
-  final int year;
-  final int month;
-  final int day;
-  final int hour;
-  final int minute;
+class UpComingEventListItem extends StatelessWidget {
+  const UpComingEventListItem({super.key, required this.event});
+
+  final Event event;
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime = DateTime(year, month, day, hour, minute);
+    DateTime dateTime = DateTime.parse(event.date as String).toLocal();
     String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
     return Container(
       padding: EdgeInsets.all(16),
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Colors.black,
+        color: AppColors.lightColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
@@ -40,7 +31,7 @@ class UpComingEventListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            title,
+            event.title,
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,

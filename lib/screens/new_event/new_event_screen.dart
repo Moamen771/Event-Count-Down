@@ -6,6 +6,7 @@ import 'package:eventcountdown/services/textfields_validators.dart';
 import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
