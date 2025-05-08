@@ -1,3 +1,4 @@
+import 'package:eventcountdown/database/sql_helper.dart';
 import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.dart';
 import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
@@ -6,6 +7,8 @@ import 'package:eventcountdown/services/textfields_validators.dart';
 import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../models/event.dart';
 import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
@@ -16,11 +19,12 @@ class NewEventScreen extends StatefulWidget {
 }
 
 class _NewEventScreenState extends State<NewEventScreen> {
-  final _titleController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  final _dateController = TextEditingController();
-  final _timeController = TextEditingController();
-  final _locationController = TextEditingController();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final dateController = TextEditingController();
+  final timeController = TextEditingController();
+  final locationController = TextEditingController();
+  final SqlHelper sqlHelper = SqlHelper();
 
   // ignore: unused_field, prefer_final_fields
   bool _initialized = false;
@@ -32,11 +36,11 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _descriptionController.dispose();
-    _dateController.dispose();
-    _timeController.dispose();
-    _locationController.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+    dateController.dispose();
+    timeController.dispose();
+    locationController.dispose();
 
     super.dispose();
   }
@@ -72,7 +76,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   ),
 
                   const Text(
-                    "Tell us about your event — add the name, date, and where it's happening!",
+                    "Tell us about your event — add title, date, and where it's happening!",
                     style: TextStyle(fontSize: 18),
                   ),
                   const SizedBox(
@@ -82,7 +86,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   //tittle textfield
                   RoundedTextField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _titleController,
+                    controller: titleController,
                     keyboardType: TextInputType.name,
                     labelText: "Title*",
                   ),
@@ -92,7 +96,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   const SizedBox(height: 15),
                   DescriptionTextField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _descriptionController,
+                    controller: descriptionController,
                     labelText: "Description*",
                   ),
                   //Year start date textfield
@@ -102,16 +106,19 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   //Month start date textfield
                   DatePickerField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _dateController,
+                    controller: dateController,
                     labelText: "Date*",
                     pickerType: "date",
                   ),
 
                   const SizedBox(height: 15),
 
+                  // TimePickerField(
+                  //     controller: timeController, labelText: "Time*"),
+
                   DatePickerField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _timeController,
+                    controller: timeController,
                     labelText: "Time*",
                     pickerType: "time",
                   ),
@@ -121,7 +128,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   const SizedBox(height: 15),
                   RoundedTextField(
                     validator: Validators().requiredFieldValidator,
-                    controller: _locationController,
+                    controller: locationController,
                     keyboardType: TextInputType.name,
                     labelText: "Location*",
                   ),
@@ -166,6 +173,16 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
             child: SaveButton(
               onTap: () {
+                sqlHelper.addEvent(
+                  Event(
+                    titleController.text,
+                    descriptionController.text,
+                    DateTime.parse(dateController.text),
+                    DateTime.parse(timeController.text) as String,
+                    // timeController.text,
+                    locationController.text,
+                  ),
+                );
                 context.go(
                   AppRouter.homeScreen,
                 );
@@ -177,3 +194,10 @@ class _NewEventScreenState extends State<NewEventScreen> {
     );
   }
 }
+
+// String timeString = "14:30"; // or "14:30:00"
+// DateFormat inputFormat = DateFormat("HH:mm"); // use "HH:mm:ss" if seconds are included
+// DateTime time = inputFormat.parse(timeString);
+//
+// // Convert to SQL TIME format
+// String sqlTime = DateFormat("HH:mm:ss").format(time);

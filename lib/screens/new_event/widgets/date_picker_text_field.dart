@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../../../utils/app_colors.dart';
 
 class DatePickerField extends StatelessWidget {
@@ -32,6 +33,8 @@ class DatePickerField extends StatelessWidget {
     int selectedDay = now.day;
     int selectedMonth = now.month;
     int selectedYear = now.year;
+    // int selectedHour = now.hour;
+    // int selectedMinute = now.minute;
 
     final List<String> months = List.generate(
       12,
@@ -61,9 +64,15 @@ class DatePickerField extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                final date = DateTime(selectedYear, selectedMonth, selectedDay);
-                final formatted = DateFormat('dd MMM yyyy').format(date);
-                controller!.text = formatted;
+                final dateTime =
+                    DateTime(selectedYear, selectedMonth, selectedDay);
+                // final time = DateTime(selectedHour, selectedMinute);
+                String formattedDate =
+                    DateFormat('yyyy-MM-dd').format(dateTime);
+                // String formattedTime = DateFormat('HH:mm').format(time);
+                // final formatted = DateFormat('dd MMM yyyy').format(date);
+                controller!.text = formattedDate;
+                // controller!.text = formattedTime;
                 Navigator.of(context).pop();
               },
             ),
