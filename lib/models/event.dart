@@ -2,7 +2,7 @@ class Event {
   final int? id;
   final String title;
   final String description;
-  final DateTime date;
+  final String date;
   final String time;
   final String location;
 
@@ -13,7 +13,7 @@ class Event {
         'id': id,
         'title': title,
         'desc': description,
-        'date': date.toIso8601String(),
+        'date': date,
         'time': time,
         'location': location,
       };

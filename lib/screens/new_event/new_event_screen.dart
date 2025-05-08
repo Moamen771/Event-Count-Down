@@ -167,19 +167,14 @@ class _NewEventScreenState extends State<NewEventScreen> {
             left: 0,
             right: 0,
             bottom: 0,
-            // child: SaveButton(
-            //   onTap: () {},
-            // )
-
             child: SaveButton(
               onTap: () {
                 sqlHelper.addEvent(
                   Event(
                     titleController.text,
                     descriptionController.text,
-                    DateTime.parse(dateController.text),
-                    DateTime.parse(timeController.text) as String,
-                    // timeController.text,
+                    dateController.text,
+                    timeController.text,
                     locationController.text,
                   ),
                 );

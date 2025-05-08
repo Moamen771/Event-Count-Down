@@ -11,8 +11,6 @@ class UpComingEventListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime = DateTime.parse(event.date as String).toLocal();
-    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
     return Container(
       padding: EdgeInsets.all(16),
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -39,7 +37,7 @@ class UpComingEventListItem extends StatelessWidget {
             ),
           ),
           Text(
-            formattedDate,
+            event.date,
             style: TextStyle(
               color: Colors.black,
               fontSize: 16,

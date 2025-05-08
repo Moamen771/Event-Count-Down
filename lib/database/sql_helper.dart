@@ -26,8 +26,8 @@ class SqlHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
         desc TEXT,
-        time TIME,
-        date DATE,
+        time TEXT,
+        date TEXT,
         location TEXT
         )
         ''');
