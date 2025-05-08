@@ -33,8 +33,8 @@ class DatePickerField extends StatelessWidget {
     int selectedDay = now.day;
     int selectedMonth = now.month;
     int selectedYear = now.year;
-    int selectedHour = now.hour;
-    int selectedMinute = now.minute;
+    // int selectedHour = now.hour;
+    // int selectedMinute = now.minute;
 
     final List<String> months = List.generate(
       12,
@@ -66,10 +66,10 @@ class DatePickerField extends StatelessWidget {
               onPressed: () {
                 final dateTime =
                     DateTime(selectedYear, selectedMonth, selectedDay);
-                final time = DateTime(selectedHour, selectedMinute);
+                // final time = DateTime(selectedHour, selectedMinute);
                 String formattedDate =
                     DateFormat('yyyy-MM-dd').format(dateTime);
-                String formattedTime = DateFormat('HH:mm').format(time);
+                // String formattedTime = DateFormat('HH:mm').format(time);
                 // final formatted = DateFormat('dd MMM yyyy').format(date);
                 controller!.text = formattedDate;
                 // controller!.text = formattedTime;

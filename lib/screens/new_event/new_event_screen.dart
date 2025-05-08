@@ -113,6 +113,9 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
                   const SizedBox(height: 15),
 
+                  // TimePickerField(
+                  //     controller: timeController, labelText: "Time*"),
+
                   DatePickerField(
                     validator: Validators().requiredFieldValidator,
                     controller: timeController,
@@ -175,7 +178,8 @@ class _NewEventScreenState extends State<NewEventScreen> {
                     titleController.text,
                     descriptionController.text,
                     DateTime.parse(dateController.text),
-                    timeController.text,
+                    DateTime.parse(timeController.text) as String,
+                    // timeController.text,
                     locationController.text,
                   ),
                 );
@@ -190,3 +194,10 @@ class _NewEventScreenState extends State<NewEventScreen> {
     );
   }
 }
+
+// String timeString = "14:30"; // or "14:30:00"
+// DateFormat inputFormat = DateFormat("HH:mm"); // use "HH:mm:ss" if seconds are included
+// DateTime time = inputFormat.parse(timeString);
+//
+// // Convert to SQL TIME format
+// String sqlTime = DateFormat("HH:mm:ss").format(time);
