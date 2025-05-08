@@ -1,5 +1,6 @@
 import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:eventcountdown/screens/home/widgets/custom_app_bar.dart';
+import 'package:eventcountdown/screens/home/widgets/upcoming_event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
@@ -86,20 +87,7 @@ class HomeScreenBody extends StatelessWidget {
               ),
             ),
           ),
-          SliverList.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) => Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: Text(
-                'Upcoming Events',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          UpComingEventList(),
         ],
       ),
     );
