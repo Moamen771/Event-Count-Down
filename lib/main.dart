@@ -5,7 +5,11 @@ import 'app.dart';
 void main() {
   WidgetsBinding widgetsFlutterBinding =
       WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsFlutterBinding);
+  FlutterNativeSplash.preserve(
+    widgetsBinding: widgetsFlutterBinding,
+  );
   FlutterNativeSplash.remove();
-  runApp(const EventCountDown());
+  runApp(
+    const EventCountDown(),
+  );
 }

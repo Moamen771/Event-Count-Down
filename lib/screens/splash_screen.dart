@@ -51,10 +51,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigateToHome() {
     Future.delayed(
       Duration(
-        milliseconds: 2500,
+        milliseconds: 2600,
       ),
       () {
-        GoRouter.of(context).pushReplacement(
+        context.go(
           AppRouter.homeScreen,
         );
       },

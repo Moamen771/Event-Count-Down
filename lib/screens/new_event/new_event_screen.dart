@@ -3,7 +3,9 @@ import 'package:eventcountdown/screens/new_event/widgets/description_textfield.d
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
 import 'package:eventcountdown/services/textfields_validators.dart';
+import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
@@ -162,7 +164,13 @@ class _NewEventScreenState extends State<NewEventScreen> {
             //   onTap: () {},
             // )
 
-            child: SaveButton(onTap: () {}),
+            child: SaveButton(
+              onTap: () {
+                context.go(
+                  AppRouter.homeScreen,
+                );
+              },
+            ),
           ),
         ],
       ),
