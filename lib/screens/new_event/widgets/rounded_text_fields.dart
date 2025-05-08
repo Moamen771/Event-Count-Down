@@ -1,5 +1,5 @@
-import 'package:eventcountdown/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import '../../../utils/app_colors.dart';
 
 class RoundedTextField extends StatelessWidget {
   final TextEditingController? controller;
@@ -36,7 +36,8 @@ class RoundedTextField extends StatelessWidget {
               ),
         TextFormField(
           onTap: onTap,
-          onChanged: onChanged, // Pass onChanged to TextFormField
+          onChanged: onChanged,
+          // Pass onChanged to TextFormField
           controller: controller,
           validator: validator,
           cursorColor: AppColors.primaryColor,
