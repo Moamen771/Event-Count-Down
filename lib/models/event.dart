@@ -12,7 +12,7 @@ class Event {
   Map<String, dynamic> toMap() => {
         'id': id,
         'title': title,
-        'description': description,
+        'desc': description,
         'date': date.toIso8601String(),
         'time': time,
         'location': location,

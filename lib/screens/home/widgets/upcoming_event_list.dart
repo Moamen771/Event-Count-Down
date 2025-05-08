@@ -15,11 +15,12 @@ class UpComingEventList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: UpComingEventListItem(
           event: Event(
-              events[index]['title'],
-              events[index]['desc'],
-              events[index]['date'],
-              events[index]['time'],
-              events[index]['location']),
+            events[index]['title'],
+            events[index]['desc'],
+            events[index]['date'],
+            events[index]['time'],
+            events[index]['location'],
+          ),
         ),
       ),
     );
