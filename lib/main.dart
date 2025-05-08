@@ -1,7 +1,6 @@
-import 'package:eventcountdown/screens/new_event/new_event_screen.dart';
+import 'package:eventcountdown/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:eventcountdown/screens/splash_screen.dart';
 
 void main() {
   WidgetsBinding widgetsFlutterBinding =
@@ -18,7 +17,7 @@ class EventCountDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NewEventScreen(),
+      home: HomeScreen(),
     );
   }
 }
