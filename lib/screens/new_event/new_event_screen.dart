@@ -169,18 +169,20 @@ class _NewEventScreenState extends State<NewEventScreen> {
             bottom: 0,
             child: SaveButton(
               onTap: () {
-                sqlHelper.addEvent(
-                  Event(
-                    titleController.text,
-                    descriptionController.text,
-                    dateController.text,
-                    timeController.text,
-                    locationController.text,
-                  ),
-                );
-                context.go(
-                  AppRouter.homeScreen,
-                );
+                if (_formKey.currentState!.validate()) {
+                  sqlHelper.addEvent(
+                    Event(
+                      titleController.text,
+                      descriptionController.text,
+                      dateController.text,
+                      timeController.text,
+                      locationController.text,
+                    ),
+                  );
+                  context.go(
+                    AppRouter.homeScreen,
+                  );
+                }
               },
             ),
           ),
