@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../utils/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -10,6 +11,7 @@ class CustomAppBar extends StatelessWidget {
         Text(
           'Event Countdown',
           style: TextStyle(
+            color: AppColors.darkerColor,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

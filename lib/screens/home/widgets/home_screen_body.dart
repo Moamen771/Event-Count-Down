@@ -103,7 +103,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                         const Text(
                           'Upcoming Events',
                           style: TextStyle(
-                            color: AppColors.darkColor,
+                            color: AppColors.darkerColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -204,6 +204,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                         const Text(
                           'Upcoming Events',
                           style: TextStyle(
+                            color: AppColors.darkerColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
