@@ -1,7 +1,5 @@
 import 'package:eventcountdown/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import '../../../models/event.dart';
 
 class UpComingEventListItem extends StatelessWidget {
@@ -12,12 +10,12 @@ class UpComingEventListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: AppColors.lightColor,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black26,
             blurRadius: 6,
@@ -30,18 +28,17 @@ class UpComingEventListItem extends StatelessWidget {
         children: [
           Text(
             event.title,
-            style: TextStyle(
-              color: Colors.black,
+            style: const TextStyle(
+              color: AppColors.darkerColor,
               fontSize: 18,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
           Text(
             event.date,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 16,
-              fontStyle: FontStyle.italic,
             ),
           ),
         ],

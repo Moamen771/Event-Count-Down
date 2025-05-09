@@ -10,13 +10,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeScreenBody(),
+      body: const HomeScreenBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go(
           AppRouter.newEventScreen,
         ),
         backgroundColor: AppColors.darkColor,
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),

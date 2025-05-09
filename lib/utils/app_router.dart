@@ -12,15 +12,15 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => SplashScreen(),
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: AppRouter.homeScreen,
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: AppRouter.newEventScreen,
-      builder: (context, state) => NewEventScreen(),
+      builder: (context, state) => const NewEventScreen(),
     ),
   ],
 );

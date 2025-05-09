@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToHome() {
     Future.delayed(
-      Duration(
+      const Duration(
         milliseconds: 2600,
       ),
       () {

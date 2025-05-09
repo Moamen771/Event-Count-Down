@@ -214,7 +214,7 @@ class DatePickerField extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           decoration: InputDecoration(
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               Icons.arrow_drop_down_circle,
               color: AppColors.primaryColor,
             ),

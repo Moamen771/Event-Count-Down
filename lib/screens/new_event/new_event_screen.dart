@@ -3,7 +3,7 @@ import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.
 import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
-import 'package:eventcountdown/services/textfields_validators.dart';
+import 'package:eventcountdown/utils/textfields_validators.dart';
 import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -142,11 +142,11 @@ class _NewEventScreenState extends State<NewEventScreen> {
                             decoration: BoxDecoration(
                                 color: AppColors.lightColor,
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(13),
+                            child: const Padding(
+                              padding: EdgeInsets.all(13),
                               child: InkWell(
                                 // onTap: () => _deleteEdution(),
-                                child: const Text(
+                                child: Text(
                                   "Delete Event",
                                   style: TextStyle(
                                     color: Colors.red,

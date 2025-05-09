@@ -97,7 +97,7 @@ class TimePickerField extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           decoration: InputDecoration(
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               Icons.access_time,
               color: AppColors.primaryColor,
             ),
