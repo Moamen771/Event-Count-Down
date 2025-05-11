@@ -1,8 +1,8 @@
 import 'package:eventcountdown/screens/home/widgets/home_screen_body.dart';
+import 'package:eventcountdown/screens/new_event/new_event_screen.dart';
 import 'package:eventcountdown/utils/app_colors.dart';
-import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,13 +12,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: const HomeScreenBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go(
-          AppRouter.newEventScreen,
+        onPressed: () => Get.to(
+          NewEventScreen(),
+          transition: Transition.fadeIn,
         ),
-        backgroundColor: AppColors.darkColor,
+        backgroundColor: AppColors.lightColor,
         child: const Icon(
           Icons.add,
-          color: Colors.white,
+          color: AppColors.darkerColor,
         ),
       ),
     );

@@ -1,14 +1,13 @@
-import 'package:eventcountdown/database/sql_helper.dart';
+import 'package:eventcountdown/screens/home/home_screen.dart';
 import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.dart';
 import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
 import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
 import 'package:eventcountdown/utils/textfields_validators.dart';
-import 'package:eventcountdown/utils/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:get/get.dart';
 import '../../models/event.dart';
+import '../../services/sql_helper.dart';
 import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
@@ -179,8 +178,9 @@ class _NewEventScreenState extends State<NewEventScreen> {
                       locationController.text,
                     ),
                   );
-                  context.go(
-                    AppRouter.homeScreen,
+                  Get.to(
+                    HomeScreen(),
+                    transition: Transition.fadeIn,
                   );
                 }
               },
