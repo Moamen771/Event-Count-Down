@@ -1,9 +1,9 @@
-import 'package:eventcountdown/database/sql_helper.dart';
 import 'package:eventcountdown/screens/home/widgets/custom_app_bar.dart';
 import 'package:eventcountdown/screens/home/widgets/upcoming_event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../services/sql_helper.dart';
 import '../../../utils/app_colors.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 

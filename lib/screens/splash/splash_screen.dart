@@ -1,8 +1,8 @@
-import 'package:eventcountdown/utils/app_router.dart';
+import 'package:eventcountdown/screens/nav_bar_screen/nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:go_router/go_router.dart';
-import '../utils/app_colors.dart';
+import 'package:get/get.dart';
+import '../../utils/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -54,8 +54,9 @@ class _SplashScreenState extends State<SplashScreen> {
         milliseconds: 2600,
       ),
       () {
-        context.go(
-          AppRouter.homeScreen,
+        Get.to(
+          NavBarScreen(),
+          transition: Transition.fadeIn,
         );
       },
     );
