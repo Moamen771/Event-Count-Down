@@ -179,7 +179,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                     ),
                   );
                   Get.to(
-                    HomeScreen(),
+                    const HomeScreen(),
                     transition: Transition.fadeIn,
                   );
                 }

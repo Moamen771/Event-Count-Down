@@ -13,7 +13,7 @@ class EventCountDown extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: AppColors.lighterColor,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

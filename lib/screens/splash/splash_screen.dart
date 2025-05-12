@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       () {
         Get.to(
-          NavBarScreen(),
+          const NavBarScreen(),
           transition: Transition.fadeIn,
         );
       },

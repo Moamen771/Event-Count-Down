@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       body: const HomeScreenBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(
-          NewEventScreen(),
+          const NewEventScreen(),
           transition: Transition.fadeIn,
         ),
         backgroundColor: AppColors.lightColor,

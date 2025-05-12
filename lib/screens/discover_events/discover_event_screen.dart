@@ -1,10 +1,13 @@
+import 'package:eventcountdown/screens/discover_events/widgets/discover_events_screen_body.dart';
 import 'package:flutter/material.dart';
 
-class DiscoverEvents extends StatelessWidget {
-  const DiscoverEvents({super.key});
+class DiscoverEventsScreen extends StatelessWidget {
+  const DiscoverEventsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: DiscoverEventsScreenBody(),
+    );
   }
 }
