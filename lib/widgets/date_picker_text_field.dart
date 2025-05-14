@@ -62,7 +62,7 @@ class DatePickerField extends StatelessWidget {
               ),
               onPressed: () {
                 final date = DateTime(selectedYear, selectedMonth, selectedDay);
-                final formatted = DateFormat('dd MMM yyyy').format(date);
+                final formatted = DateFormat('yyyy-MM-dd').format(date);
                 controller!.text = formatted;
                 Navigator.of(context).pop();
               },
@@ -138,7 +138,7 @@ class DatePickerField extends StatelessWidget {
   }
 
   void _showTimePicker(BuildContext context) {
-    TimeOfDay selectedTime = TimeOfDay.now();
+    DateTime selectedDateTime = DateTime.now();
 
     showCupertinoModalPopup(
       context: context,
@@ -156,7 +156,8 @@ class DatePickerField extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                final formatted = selectedTime.format(context);
+                final formatted =
+                    DateFormat('HH:mm:ss').format(selectedDateTime);
                 controller!.text = formatted;
                 Navigator.of(context).pop();
               },
@@ -164,10 +165,10 @@ class DatePickerField extends StatelessWidget {
             Expanded(
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.time,
-                initialDateTime: DateTime.now(),
-                use24hFormat: false,
+                initialDateTime: selectedDateTime,
+                use24hFormat: true,
                 onDateTimeChanged: (DateTime dateTime) {
-                  selectedTime = TimeOfDay.fromDateTime(dateTime);
+                  selectedDateTime = dateTime;
                 },
               ),
             ),
