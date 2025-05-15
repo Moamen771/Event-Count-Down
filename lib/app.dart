@@ -11,7 +11,7 @@ class EventCountDown extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: AppColors.lighterColor,
+        scaffoldBackgroundColor: AppColors.whiteColor,
       ),
       home: const SplashScreen(),
     );
