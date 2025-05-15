@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../utils/app_colors.dart';
 
 class RoundedTextField extends StatelessWidget {
@@ -26,21 +27,34 @@ class RoundedTextField extends StatelessWidget {
       children: [
         labelText == null
             ? const SizedBox()
-            : Text(
-                labelText ?? "",
-                style: const TextStyle(
-                  color: AppColors.blackColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
+            : RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: labelText ?? "",
+                      style: const TextStyle(
+                        color: AppColors.darkColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "*",
+                      style: TextStyle(
+                        color: Colors.red.withOpacity(0.7),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
         TextFormField(
           onTap: onTap,
           onChanged: onChanged,
-          // Pass onChanged to TextFormField
           controller: controller,
           validator: validator,
-          cursorColor: AppColors.primaryColor,
+          cursorColor: AppColors.darkColor,
+          cursorHeight: 25,
           style: const TextStyle(
             color: AppColors.blackColor,
             fontSize: 20,
@@ -48,8 +62,8 @@ class RoundedTextField extends StatelessWidget {
           ),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 10.0, // Reduced vertical padding
-              horizontal: 12.0, // Horizontal padding for aesthetics
+              vertical: 10.0,
+              horizontal: 12.0,
             ),
             errorStyle: const TextStyle(
               color: Colors.red,
@@ -57,29 +71,27 @@ class RoundedTextField extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.darkerColor),
-              borderRadius: BorderRadius.circular(
-                  12.0), // Adjust radius for rounded corners
+              borderSide: const BorderSide(color: AppColors.darkColor),
+              borderRadius: BorderRadius.circular(8),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.darkerColor),
-              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: AppColors.darkColor),
+              borderRadius: BorderRadius.circular(8),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: AppColors.darkerColor, width: 2.0),
-              borderRadius: BorderRadius.circular(12.0),
+                  const BorderSide(color: AppColors.darkColor, width: 1.5),
+              borderRadius: BorderRadius.circular(8),
             ),
             errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(8),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 2.0),
+              borderSide: const BorderSide(color: Colors.red, width: 1.5),
               borderRadius: BorderRadius.circular(12.0),
             ),
           ),
-
           keyboardType: keyboardType,
         ),
       ],

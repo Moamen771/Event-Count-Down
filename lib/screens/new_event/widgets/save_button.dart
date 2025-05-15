@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../utils/app_colors.dart';
 
 class SaveButton extends StatelessWidget {
@@ -10,7 +11,7 @@ class SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.lighterColor,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -21,14 +22,14 @@ class SaveButton extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: GestureDetector(
           onTap: onTap,
           child: Center(
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: AppColors.primaryColor,
+                color: AppColors.lightColor,
               ),
               child: const Center(
                 child: Padding(
@@ -36,7 +37,7 @@ class SaveButton extends StatelessWidget {
                   child: Text(
                     "Save",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.darkColor,
                       fontWeight: FontWeight.w700,
                       fontSize: 25,
                     ),
