@@ -4,7 +4,7 @@ import 'app.dart';
 
 void main() {
   WidgetsBinding widgetsFlutterBinding =
-  WidgetsFlutterBinding.ensureInitialized();
+      WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(
     widgetsBinding: widgetsFlutterBinding,
   );
@@ -13,9 +13,3 @@ void main() {
     const EventCountDown(),
   );
 }
-
-/*
-* speech create [ title desc date time location ]
-* API event
-* special & later
-*/
