@@ -50,15 +50,15 @@ class DatePickerField extends StatelessWidget {
       context: context,
       builder: (_) => Container(
         height: 300,
-        color: Colors.white,
+        color: AppColors.whiteColor,
         child: Column(
           children: [
             CupertinoButton(
               child: const Text(
-                "Done",
+                "Select",
                 style: TextStyle(
                   fontSize: 20,
-                  color: AppColors.blackColor,
+                  color: AppColors.darkColor,
                 ),
               ),
               onPressed: () {
@@ -150,10 +150,10 @@ class DatePickerField extends StatelessWidget {
           children: [
             CupertinoButton(
               child: const Text(
-                "Done",
+                "Select",
                 style: TextStyle(
                   fontSize: 20,
-                  color: AppColors.blackColor,
+                  color: AppColors.darkColor,
                 ),
               ),
               onPressed: () {
@@ -184,12 +184,25 @@ class DatePickerField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          labelText ?? "",
-          style: const TextStyle(
-            color: AppColors.blackColor,
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
+        RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: labelText ?? "",
+                style: const TextStyle(
+                  color: AppColors.darkColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
+              ),
+              TextSpan(
+                text: "*",
+                style: TextStyle(
+                  color: Colors.red.withOpacity(0.7),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
         ),
         TextFormField(
@@ -207,9 +220,9 @@ class DatePickerField extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           decoration: InputDecoration(
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               Icons.arrow_drop_down_circle,
-              color: AppColors.primaryColor,
+              color: AppColors.darkColor,
             ),
             contentPadding: const EdgeInsets.symmetric(
               vertical: 10.0,
@@ -226,28 +239,28 @@ class DatePickerField extends StatelessWidget {
             filled: true,
             disabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: AppColors.whiteColor),
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(8),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.darkerColor),
-              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: AppColors.darkColor),
+              borderRadius: BorderRadius.circular(8),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.darkerColor),
-              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: AppColors.darkColor),
+              borderRadius: BorderRadius.circular(8),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: AppColors.darkerColor, width: 2.0),
-              borderRadius: BorderRadius.circular(12.0),
+                  const BorderSide(color: AppColors.darkColor, width: 1.5),
+              borderRadius: BorderRadius.circular(8),
             ),
             errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(8),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 2.0),
-              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: Colors.red, width: 1.5),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ),

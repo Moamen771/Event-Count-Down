@@ -1,3 +1,4 @@
+import 'package:eventcountdown/screens/later_events/widgets/later_event_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class LaterEventScreen extends StatelessWidget {
@@ -5,6 +6,8 @@ class LaterEventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: LaterEventScreenBody(),
+    );
   }
 }
