@@ -6,6 +6,7 @@ import 'package:eventcountdown/screens/new_event/widgets/save_button.dart';
 import 'package:eventcountdown/utils/textfields_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../models/event.dart';
 import '../../services/sql_helper.dart';
 import '../../utils/app_colors.dart';
@@ -48,93 +49,69 @@ class _NewEventScreenState extends State<NewEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "New Event",
           style: TextStyle(
-              color: AppColors.whiteColor, fontWeight: FontWeight.bold),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.lightColor,
+        foregroundColor: AppColors.darkColor,
       ),
       body: Stack(
         children: [
           Form(
             key: _formKey,
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: ListView(
-                padding: const EdgeInsets.only(bottom: 95), //navbar height
-
+                padding: const EdgeInsets.only(bottom: 95),
                 children: [
-                  // Personal Informations
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-
+                  const SizedBox(height: 10),
                   const Text(
                     "Tell us about your event — add title, date, and where it's happening!",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      color: AppColors.darkColor,
+                      fontSize: 18,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  //tittle textfield
+                  const SizedBox(height: 30),
                   RoundedTextField(
                     validator: Validators().requiredFieldValidator,
                     controller: titleController,
                     keyboardType: TextInputType.name,
-                    labelText: "Title*",
+                    labelText: "Title",
                   ),
-
-                  const SizedBox(height: 15),
-
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 30),
                   DescriptionTextField(
                     validator: Validators().requiredFieldValidator,
                     controller: descriptionController,
-                    labelText: "Description*",
+                    labelText: "Description",
                   ),
-                  //Year start date textfield
-
-                  const SizedBox(height: 15),
-
-                  //Month start date textfield
+                  const SizedBox(height: 30),
                   DatePickerField(
                     validator: Validators().requiredFieldValidator,
                     controller: dateController,
-                    labelText: "Date*",
+                    labelText: "Date",
                     pickerType: "date",
                   ),
-
                   const SizedBox(height: 15),
-
-                  // TimePickerField(
-                  //     controller: timeController, labelText: "Time*"),
-
                   DatePickerField(
                     validator: Validators().requiredFieldValidator,
                     controller: timeController,
-                    labelText: "Time*",
+                    labelText: "Time",
                     pickerType: "time",
                   ),
-
-                  //Year end date textfield
-
                   const SizedBox(height: 15),
                   RoundedTextField(
                     validator: Validators().requiredFieldValidator,
                     controller: locationController,
                     keyboardType: TextInputType.name,
-                    labelText: "Location*",
+                    labelText: "Location",
                   ),
-
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  const SizedBox(height: 30),
                   _editMode
                       ? Center(
                           child: Container(
@@ -144,7 +121,6 @@ class _NewEventScreenState extends State<NewEventScreen> {
                             child: const Padding(
                               padding: EdgeInsets.all(13),
                               child: InkWell(
-                                // onTap: () => _deleteEdution(),
                                 child: Text(
                                   "Delete Event",
                                   style: TextStyle(
@@ -191,10 +167,3 @@ class _NewEventScreenState extends State<NewEventScreen> {
     );
   }
 }
-
-// String timeString = "14:30"; // or "14:30:00"
-// DateFormat inputFormat = DateFormat("HH:mm"); // use "HH:mm:ss" if seconds are included
-// DateTime time = inputFormat.parse(timeString);
-//
-// // Convert to SQL TIME format
-// String sqlTime = DateFormat("HH:mm:ss").format(time);
