@@ -1,4 +1,4 @@
-import 'package:eventcountdown/screens/home/home_screen.dart';
+import 'package:eventcountdown/screens/nav_bar_screen/nav_bar_screen.dart';
 import 'package:eventcountdown/screens/new_event/widgets/date_picker_text_field.dart';
 import 'package:eventcountdown/screens/new_event/widgets/description_textfield.dart';
 import 'package:eventcountdown/screens/new_event/widgets/rounded_text_fields.dart';
@@ -179,7 +179,7 @@ class _NewEventScreenState extends State<NewEventScreen> {
                     ),
                   );
                   Get.to(
-                    HomeScreen(),
+                    const NavBarScreen(),
                     transition: Transition.fadeIn,
                   );
                 }

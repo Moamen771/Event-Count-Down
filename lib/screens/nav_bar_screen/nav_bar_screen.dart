@@ -17,7 +17,7 @@ class NavBarScreen extends StatefulWidget {
 class _NavBarScreenState extends State<NavBarScreen> {
   List<Widget> screens = const [
     HomeScreen(),
-    DiscoverEvents(),
+    DiscoverEventsScreen(),
     LaterEventScreen(),
   ];
   final screenIndex = 0.obs;

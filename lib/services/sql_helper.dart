@@ -51,9 +51,25 @@ class SqlHelper {
         where: 'id = ?', whereArgs: [event.id]);
   }
 
-  Future<List<Map>> getEvents() async {
+  // Future<List<Map>> getEvents() async {
+  //   Database db = await getDatabase();
+  //   return await db.query('events');
+  // }
+
+  Future<List<Event>> getEvents() async {
     Database db = await getDatabase();
-    return await db.query('events');
+    final List<Map<String, dynamic>> maps = await db.query('events');
+
+    return maps.map((item) {
+      return Event(
+        item['title'],
+        item['desc'],
+        item['date'],
+        item['time'],
+        item['location'],
+        item['id'],
+      );
+    }).toList();
   }
 
   Future deleteEvent(int id) async {
