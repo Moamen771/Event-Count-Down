@@ -3,20 +3,10 @@ import 'package:eventcountdown/screens/discover_events/widgets/custom_timer.dart
 import 'package:eventcountdown/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-
 class ViewEventScreen extends StatelessWidget {
-  final Event? event;
+  const ViewEventScreen({super.key, required this.event});
 
-  const ViewEventScreen({super.key, this.event});
-
-  // Event get _dummyEvent => Event(
-  //       "Tech Conference 2025",
-  //       "A conference about AI, Flutter, and future tech innovations",
-  //       "2025-6-15",
-  //       "21:30",
-  //       "Cairo, Egypt",
-  //       1,
-  //     );
+  final Event event;
 
   DateTime _parseEventDateTime(String date, String time) {
     final dateParts = date.split('-').map(int.parse).toList();
@@ -52,10 +42,10 @@ class ViewEventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveEvent = event ;
+    final effectiveEvent = event;
     // final effectiveEvent = event ?? _dummyEvent;
     final targetDate =
-        _parseEventDateTime(effectiveEvent!.date, effectiveEvent.time);
+        _parseEventDateTime(effectiveEvent.date, effectiveEvent.time);
 
     return Scaffold(
       appBar: AppBar(
@@ -72,9 +62,7 @@ class ViewEventScreen extends StatelessWidget {
               CustomTimerCountdown(
                 title: effectiveEvent.title,
                 targetDate: targetDate,
-                onEnd: () {
-                  print("Event countdown finished!");
-                },
+                onEnd: () {},
               ),
               const SizedBox(height: 16),
               Card(
