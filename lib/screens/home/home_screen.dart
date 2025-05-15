@@ -12,10 +12,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: const HomeScreenBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.to(
-          const NewEventScreen(),
-          transition: Transition.fadeIn,
-        ),
+        onPressed: () {
+          Get.to(
+            const NewEventScreen(),
+            transition: Transition.fadeIn,
+          );
+        },
         backgroundColor: AppColors.lightColor,
         child: const Icon(
           Icons.add,
