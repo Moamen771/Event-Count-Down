@@ -12,10 +12,10 @@ class OnlineEventsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // launchUrl(
-        //   Uri.https(onlineEvent.link),
-        //   mode: LaunchMode.externalApplication,
-        // );
+        launchUrl(
+          Uri.parse(onlineEvent.link),
+          mode: LaunchMode.externalApplication,
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
