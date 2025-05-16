@@ -12,7 +12,10 @@ import '../../services/sql_helper.dart';
 import '../../utils/app_colors.dart';
 
 class NewEventScreen extends StatefulWidget {
-  const NewEventScreen({super.key});
+  const NewEventScreen({super.key, this.editMode = false, this.event});
+
+  final editMode;
+  final Event? event;
 
   @override
   State<NewEventScreen> createState() => _NewEventScreenState();
@@ -29,9 +32,6 @@ class _NewEventScreenState extends State<NewEventScreen> {
   // ignore: unused_field, prefer_final_fields
   bool _initialized = false;
 
-  // ignore: prefer_final_fields
-  bool _editMode = false;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -47,12 +47,22 @@ class _NewEventScreenState extends State<NewEventScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_initialized) {
+      if (widget.editMode) {
+        titleController.text = widget.event!.title;
+        descriptionController.text = widget.event!.description;
+        dateController.text = widget.event!.date;
+        timeController.text = widget.event!.time;
+        locationController.text = widget.event!.location;
+      }
+      _initialized = true;
+    }
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: const Text(
-          "New Event",
-          style: TextStyle(
+        title: Text(
+          widget.editMode ? "Edit Event" : "New Event",
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -86,19 +96,18 @@ class _NewEventScreenState extends State<NewEventScreen> {
                   ),
                   const SizedBox(height: 30),
                   DescriptionTextField(
-                    validator: Validators().requiredFieldValidator,
                     controller: descriptionController,
                     labelText: "Description",
                   ),
                   const SizedBox(height: 30),
-                  DatePickerField(
+                  DateAndTimePickerField(
                     validator: Validators().requiredFieldValidator,
                     controller: dateController,
                     labelText: "Date",
                     pickerType: "date",
                   ),
                   const SizedBox(height: 15),
-                  DatePickerField(
+                  DateAndTimePickerField(
                     validator: Validators().requiredFieldValidator,
                     controller: timeController,
                     labelText: "Time",
@@ -112,27 +121,6 @@ class _NewEventScreenState extends State<NewEventScreen> {
                     labelText: "Location",
                   ),
                   const SizedBox(height: 30),
-                  _editMode
-                      ? Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: AppColors.lightColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: const Padding(
-                              padding: EdgeInsets.all(13),
-                              child: InkWell(
-                                child: Text(
-                                  "Delete Event",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(),
                 ],
               ),
             ),
@@ -145,15 +133,26 @@ class _NewEventScreenState extends State<NewEventScreen> {
             child: SaveButton(
               onTap: () {
                 if (_formKey.currentState!.validate()) {
-                  sqlHelper.addEvent(
-                    Event(
-                      titleController.text,
-                      descriptionController.text,
-                      dateController.text,
-                      timeController.text,
-                      locationController.text,
-                    ),
-                  );
+                  widget.editMode
+                      ? sqlHelper.updateEvent(
+                          Event(
+                            titleController.text,
+                            descriptionController.text,
+                            dateController.text,
+                            timeController.text,
+                            locationController.text,
+                            widget.event!.id,
+                          ),
+                        )
+                      : sqlHelper.addEvent(
+                          Event(
+                            titleController.text,
+                            descriptionController.text,
+                            dateController.text,
+                            timeController.text,
+                            locationController.text,
+                          ),
+                        );
                   Get.to(
                     const NavBarScreen(),
                     transition: Transition.fadeIn,

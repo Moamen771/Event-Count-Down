@@ -54,11 +54,15 @@ class ViewEventScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(NewEventScreen(
-                  // editMode: true
-                  ));
+                Get.to(
+                  NewEventScreen(
+                    editMode: true,
+                    event: event,
+                  ),
+                  transition: Transition.fadeIn,
+                );
               },
-              icon: Icon(Icons.edit))
+              icon: const Icon(Icons.edit))
         ],
         title: Text(effectiveEvent.title),
         backgroundColor: AppColors.lightColor,
