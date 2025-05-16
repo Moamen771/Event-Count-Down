@@ -1,7 +1,9 @@
 import 'package:eventcountdown/models/event.dart';
 import 'package:eventcountdown/screens/discover_events/widgets/custom_timer.dart';
+import 'package:eventcountdown/screens/new_event/new_event_screen.dart';
 import 'package:eventcountdown/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ViewEventScreen extends StatelessWidget {
   const ViewEventScreen({super.key, required this.event});
@@ -28,7 +30,7 @@ class ViewEventScreen extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: Icon(icon, color: AppColors.primaryColor),
+          leading: Icon(icon, color: AppColors.darkColor),
           title: Text(
             title,
             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -49,9 +51,18 @@ class ViewEventScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(NewEventScreen(
+                  // editMode: true
+                  ));
+              },
+              icon: Icon(Icons.edit))
+        ],
         title: Text(effectiveEvent.title),
-        backgroundColor: AppColors.darkGray,
-        foregroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.lightColor,
+        foregroundColor: AppColors.darkerColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,6 +77,7 @@ class ViewEventScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Card(
+                color: AppColors.lightColor,
                 elevation: 4,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),

@@ -39,7 +39,7 @@ class CustomTimerCountdown extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: AppColors.darkGray,
+        color: AppColors.lightColor,
         boxShadow: const [
           BoxShadow(
             color: Colors.black26,
@@ -57,7 +57,7 @@ class CustomTimerCountdown extends StatelessWidget {
             title,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              color: AppColors.whiteColor,
+              color: AppColors.darkerColor,
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
@@ -66,17 +66,17 @@ class CustomTimerCountdown extends StatelessWidget {
             format: CountDownTimerFormat.daysHoursMinutesSeconds,
             endTime: isPast ? DateTime.now() : targetDate,
             timeTextStyle: TextStyle(
-              color: AppColors.whiteColor,
+              color: AppColors.darkColor,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
             colonsTextStyle: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: AppColors.whiteColor,
+              color: AppColors.darkerColor,
             ),
             descriptionTextStyle: TextStyle(
-              color: AppColors.whiteColor,
+              color: AppColors.darkerColor,
               fontSize: 16,
             ),
             onEnd: isPast ? () {} : (onEnd ?? () {}),
