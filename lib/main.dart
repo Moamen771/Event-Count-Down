@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'app.dart';
 
-void main() {
+void main() async {
   WidgetsBinding widgetsFlutterBinding =
       WidgetsFlutterBinding.ensureInitialized();
-  LocalNotificationsService.init();
+  await NotificationService.instance.initialize();
   FlutterNativeSplash.preserve(
     widgetsBinding: widgetsFlutterBinding,
   );

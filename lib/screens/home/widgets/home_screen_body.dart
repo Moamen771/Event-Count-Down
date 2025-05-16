@@ -135,9 +135,21 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                                   ),
                                   onEnd: () async {
                                     if (nextEvent != null) {
-                                      await LocalNotificationsService
-                                          .showScheduledNotificationForEvent(
-                                              nextEvent);
+                                      // Recalculate the event datetime here
+                                      final eventDateTime = DateTime.parse(
+                                          '${nextEvent.date} ${nextEvent.time}');
+
+                                      // Schedule a local notification 5 seconds after the event ends
+                                      await NotificationService.instance
+                                          .scheduleNotification(
+                                        id: nextEvent.id!,
+                                        title: '${nextEvent.title} Ended',
+                                        body:
+                                            'The event "${nextEvent.title}" has just ended.',
+                                        scheduledTime: DateTime.now()
+                                            .add(const Duration(seconds: 5)),
+                                      );
+                                      // Delete the event and refresh UI
                                       await sqlHelper
                                           .deleteEvent(nextEvent.id!);
                                       await refreshEvents();
