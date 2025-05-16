@@ -4,14 +4,14 @@ import 'package:intl/intl.dart';
 
 import '../../../utils/app_colors.dart';
 
-class DatePickerField extends StatelessWidget {
+class DateAndTimePickerField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labelText;
   final bool isEnabled;
   final String? Function(String?)? validator;
   final String pickerType; // "date" or "time"
 
-  const DatePickerField({
+  const DateAndTimePickerField({
     super.key,
     required this.controller,
     this.labelText,
@@ -41,10 +41,33 @@ class DatePickerField extends StatelessWidget {
 
     final List<int> years = List.generate(
       51,
-      (index) => 2000 + index,
+      (index) => now.year + index,
     );
 
     int daysInMonth(int year, int month) => DateTime(year, month + 1, 0).day;
+
+    bool isValidDate() {
+      final selectedDate = DateTime(selectedYear, selectedMonth, selectedDay);
+      final today = DateTime(now.year, now.month, now.day);
+      return selectedDate.compareTo(today) >= 0;
+    }
+
+    int getMinDay() {
+      if (selectedYear == now.year && selectedMonth == now.month) {
+        return now.day;
+      }
+      return 1;
+    }
+
+    List<Widget> getDaysWidgets() {
+      final minDay = getMinDay();
+      final maxDay = daysInMonth(selectedYear, selectedMonth);
+
+      return List.generate(
+        maxDay - minDay + 1,
+        (index) => Center(child: Text((index + minDay).toString())),
+      );
+    }
 
     showCupertinoModalPopup(
       context: context,
@@ -62,10 +85,20 @@ class DatePickerField extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                final date = DateTime(selectedYear, selectedMonth, selectedDay);
-                final formatted = DateFormat('yyyy-MM-dd').format(date);
-                controller!.text = formatted;
-                Navigator.of(context).pop();
+                if (isValidDate()) {
+                  final date =
+                      DateTime(selectedYear, selectedMonth, selectedDay);
+                  final formatted = DateFormat('yyyy-MM-dd').format(date);
+                  controller!.text = formatted;
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Cannot select dates in the past'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
               },
             ),
             Expanded(
@@ -74,59 +107,76 @@ class DatePickerField extends StatelessWidget {
                   Expanded(
                     child: StatefulBuilder(
                       builder: (context, setState) {
+                        final minDay = getMinDay();
+                        final initialDayIndex =
+                            selectedDay < minDay ? 0 : selectedDay - minDay;
+
                         return CupertinoPicker(
                           scrollController: FixedExtentScrollController(
-                            initialItem: selectedDay - 1,
+                            initialItem: initialDayIndex,
                           ),
                           itemExtent: 32.0,
                           onSelectedItemChanged: (index) {
-                            selectedDay = index + 1;
+                            selectedDay = index + minDay;
                           },
-                          children: List.generate(
-                            daysInMonth(selectedYear, selectedMonth),
-                            (index) =>
-                                Center(child: Text((index + 1).toString())),
-                          ),
+                          children: getDaysWidgets(),
                         );
                       },
                     ),
                   ),
                   Expanded(
-                    child: CupertinoPicker(
-                      scrollController: FixedExtentScrollController(
-                        initialItem: selectedMonth - 1,
-                      ),
-                      itemExtent: 32.0,
-                      onSelectedItemChanged: (index) {
-                        selectedMonth = index + 1;
-                        if (selectedDay >
-                            daysInMonth(selectedYear, selectedMonth)) {
-                          selectedDay =
-                              daysInMonth(selectedYear, selectedMonth);
-                        }
+                    child: StatefulBuilder(
+                      builder: (context, setState) {
+                        return CupertinoPicker(
+                          scrollController: FixedExtentScrollController(
+                            initialItem: selectedMonth - 1,
+                          ),
+                          itemExtent: 32.0,
+                          onSelectedItemChanged: (index) {
+                            selectedMonth = index + 1;
+                            final minDay = getMinDay();
+                            final maxDay =
+                                daysInMonth(selectedYear, selectedMonth);
+                            if (selectedDay < minDay) {
+                              selectedDay = minDay;
+                            } else if (selectedDay > maxDay) {
+                              selectedDay = maxDay;
+                            }
+                            setState(() {});
+                          },
+                          children: months
+                              .map((month) => Center(child: Text(month)))
+                              .toList(),
+                        );
                       },
-                      children: months
-                          .map((month) => Center(child: Text(month)))
-                          .toList(),
                     ),
                   ),
                   Expanded(
-                    child: CupertinoPicker(
-                      scrollController: FixedExtentScrollController(
-                        initialItem: selectedYear - 2000,
-                      ),
-                      itemExtent: 32.0,
-                      onSelectedItemChanged: (index) {
-                        selectedYear = 2000 + index;
-                        if (selectedDay >
-                            daysInMonth(selectedYear, selectedMonth)) {
-                          selectedDay =
-                              daysInMonth(selectedYear, selectedMonth);
-                        }
+                    child: StatefulBuilder(
+                      builder: (context, setState) {
+                        return CupertinoPicker(
+                          scrollController: FixedExtentScrollController(
+                            initialItem: 0,
+                          ),
+                          itemExtent: 32.0,
+                          onSelectedItemChanged: (index) {
+                            selectedYear = now.year + index;
+                            final minDay = getMinDay();
+                            final maxDay =
+                                daysInMonth(selectedYear, selectedMonth);
+                            if (selectedDay < minDay) {
+                              selectedDay = minDay;
+                            } else if (selectedDay > maxDay) {
+                              selectedDay = maxDay;
+                            }
+                            setState(() {});
+                          },
+                          children: years
+                              .map((year) =>
+                                  Center(child: Text(year.toString())))
+                              .toList(),
+                        );
                       },
-                      children: years
-                          .map((year) => Center(child: Text(year.toString())))
-                          .toList(),
                     ),
                   ),
                 ],
@@ -139,7 +189,39 @@ class DatePickerField extends StatelessWidget {
   }
 
   void _showTimePicker(BuildContext context) {
+    final now = DateTime.now();
     DateTime selectedDateTime = DateTime.now();
+
+    // Extract date from controller if available to check if it's today
+    bool isToday = true;
+    if (controller != null &&
+        controller!.text.isNotEmpty &&
+        pickerType == 'time') {
+      // Try to get the date from another controller
+      final eventDateController = controller!.text;
+      try {
+        // Get the current date for comparison
+        final today = DateTime(now.year, now.month, now.day);
+        isToday = true; // Default to today for validation
+      } catch (e) {
+        // If can't parse date, assume it's today for safety
+        isToday = true;
+      }
+    }
+
+    // Function to check if selected time is valid (not in the past)
+    bool isValidTime() {
+      if (!isToday) {
+        // If not today, any time is valid
+        return true;
+      }
+
+      // If today, compare with current time
+      final currentTime = DateTime.now();
+      return selectedDateTime.hour > currentTime.hour ||
+          (selectedDateTime.hour == currentTime.hour &&
+              selectedDateTime.minute >= currentTime.minute);
+    }
 
     showCupertinoModalPopup(
       context: context,
@@ -157,10 +239,20 @@ class DatePickerField extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                final formatted =
-                    DateFormat('HH:mm:ss').format(selectedDateTime);
-                controller!.text = formatted;
-                Navigator.of(context).pop();
+                if (!isToday || isValidTime()) {
+                  final formatted =
+                      DateFormat('HH:mm:ss').format(selectedDateTime);
+                  controller!.text = formatted;
+                  Navigator.of(context).pop();
+                } else {
+                  // Show snackbar for past time selection
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Cannot select a time in the past'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
               },
             ),
             Expanded(
@@ -168,6 +260,7 @@ class DatePickerField extends StatelessWidget {
                 mode: CupertinoDatePickerMode.time,
                 initialDateTime: selectedDateTime,
                 use24hFormat: true,
+                minimumDate: isToday ? now : null,
                 onDateTimeChanged: (DateTime dateTime) {
                   selectedDateTime = dateTime;
                 },

@@ -76,9 +76,4 @@ class SqlHelper {
     Database db = await getDatabase();
     await db.delete('events', where: 'id = ?', whereArgs: [id]);
   }
-
-  Future deleteAllEvents() async {
-    Database db = await getDatabase();
-    db.delete('events');
-  }
 }

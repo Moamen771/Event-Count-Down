@@ -32,13 +32,6 @@ class DescriptionTextField extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    TextSpan(
-                      text: "*",
-                      style: TextStyle(
-                        color: Colors.red.withOpacity(0.7),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                   ],
                 ),
               ),
