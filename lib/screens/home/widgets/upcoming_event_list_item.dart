@@ -36,12 +36,17 @@ class UpComingEventListItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              event.title,
-              style: const TextStyle(
-                color: AppColors.darkerColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: 
+              Text(
+                event.title,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: AppColors.darkerColor,
+                  // color: AppColors.whiteColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             Text(
