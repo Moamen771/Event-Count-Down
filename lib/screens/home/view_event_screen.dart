@@ -50,7 +50,7 @@ class ViewEventScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(effectiveEvent.title),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.darkGray,
         foregroundColor: AppColors.whiteColor,
       ),
       body: SingleChildScrollView(
