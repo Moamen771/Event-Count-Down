@@ -35,10 +35,21 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_timezone:
+  permission_handler:
+  flutter_local_notifications:
+  url_launcher:
+  dio:
+  curved_navigation_bar:
+  get:
+  speech_to_text:
+  shimmer:
+  flutter_timer_countdown:
+  flutter_animate:
   sqflite:
   path:
   loading_animation_widget:
-  intl: ^0.20.2
+  intl:
   flutter_native_splash:
 
 
@@ -66,8 +77,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/images/
+  assets:
+    - assets/images/
+    - assets/images/splash/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -111,7 +123,7 @@ flutter_native_splash:
   # of your splash screen to a solid color.  Use background_image to set the background of your
   # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
   # size of the app. Only one parameter can be used, color and background_image cannot both be set.
-  color: "#4052D6"
+  color: "#112D4E"
   #background_image: "assets/background.png"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
@@ -160,7 +172,7 @@ flutter_native_splash:
     image: assets/images/splash/sp_logo.png
 
     # Splash screen background color.
-    color: "#4052D6"
+    color: "#112D4E"
 
   # App icon background color.
   #icon_background_color: "#111111"

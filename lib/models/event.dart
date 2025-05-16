@@ -2,7 +2,7 @@ class Event {
   final int? id;
   final String title;
   final String description;
-  final DateTime date;
+  final String date;
   final String time;
   final String location;
 
@@ -12,8 +12,8 @@ class Event {
   Map<String, dynamic> toMap() => {
         'id': id,
         'title': title,
-        'description': description,
-        'date': date.toIso8601String(),
+        'desc': description,
+        'date': date,
         'time': time,
         'location': location,
       };
