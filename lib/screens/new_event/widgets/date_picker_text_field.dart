@@ -47,9 +47,10 @@ class DateAndTimePickerField extends StatelessWidget {
     int daysInMonth(int year, int month) => DateTime(year, month + 1, 0).day;
 
     bool isValidDate() {
-      final selectedDate = DateTime(selectedYear, selectedMonth, selectedDay);
-      final today = DateTime(now.year, now.month, now.day);
-      return selectedDate.compareTo(today) >= 0;
+      if (selectedYear == now.year && selectedMonth == now.month) {
+        return selectedDay >= now.day;
+      }
+      return true;
     }
 
     int getMinDay() {
@@ -60,12 +61,11 @@ class DateAndTimePickerField extends StatelessWidget {
     }
 
     List<Widget> getDaysWidgets() {
-      final minDay = getMinDay();
       final maxDay = daysInMonth(selectedYear, selectedMonth);
 
       return List.generate(
-        maxDay - minDay + 1,
-        (index) => Center(child: Text((index + minDay).toString())),
+        maxDay,
+        (index) => Center(child: Text((index + 1).toString())),
       );
     }
 
@@ -92,9 +92,14 @@ class DateAndTimePickerField extends StatelessWidget {
                   controller!.text = formatted;
                   Navigator.of(context).pop();
                 } else {
+                  final date = DateTime(now.year, now.month, now.day);
+                  final formatted = DateFormat('yyyy-MM-dd').format(date);
+                  controller!.text = formatted;
+                  Navigator.of(context).pop();
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Cannot select dates in the past'),
+                      content: Text('Past date selected - Reset to today'),
                       duration: Duration(seconds: 2),
                     ),
                   );
@@ -107,19 +112,26 @@ class DateAndTimePickerField extends StatelessWidget {
                   Expanded(
                     child: StatefulBuilder(
                       builder: (context, setState) {
-                        final minDay = getMinDay();
-                        final initialDayIndex =
-                            selectedDay < minDay ? 0 : selectedDay - minDay;
-
+                        List<Widget> dayWidgets = getDaysWidgets();
+                        int initialDayIndex = selectedDay - 1;
+                        if (initialDayIndex < 0) initialDayIndex = 0;
                         return CupertinoPicker(
                           scrollController: FixedExtentScrollController(
                             initialItem: initialDayIndex,
                           ),
                           itemExtent: 32.0,
                           onSelectedItemChanged: (index) {
-                            selectedDay = index + minDay;
+                            selectedDay = index + 1;
+
+                            if (selectedYear == now.year &&
+                                selectedMonth == now.month &&
+                                selectedDay < now.day) {
+                              setState(() {
+                                selectedDay = now.day;
+                              });
+                            }
                           },
-                          children: getDaysWidgets(),
+                          children: dayWidgets,
                         );
                       },
                     ),
@@ -127,26 +139,35 @@ class DateAndTimePickerField extends StatelessWidget {
                   Expanded(
                     child: StatefulBuilder(
                       builder: (context, setState) {
+                        int initialMonthIndex = selectedMonth - 1;
+
+                        List<Widget> monthWidgets = [];
+                        if (selectedYear == now.year) {
+                          for (int i = now.month - 1; i < months.length; i++) {
+                            monthWidgets.add(Center(child: Text(months[i])));
+                          }
+                          initialMonthIndex = 0; // First available month
+                        } else {
+                          monthWidgets = months
+                              .map((month) => Center(child: Text(month)))
+                              .toList();
+                          initialMonthIndex = selectedMonth - 1;
+                        }
+
                         return CupertinoPicker(
                           scrollController: FixedExtentScrollController(
-                            initialItem: selectedMonth - 1,
+                            initialItem: initialMonthIndex,
                           ),
                           itemExtent: 32.0,
                           onSelectedItemChanged: (index) {
-                            selectedMonth = index + 1;
-                            final minDay = getMinDay();
-                            final maxDay =
-                                daysInMonth(selectedYear, selectedMonth);
-                            if (selectedDay < minDay) {
-                              selectedDay = minDay;
-                            } else if (selectedDay > maxDay) {
-                              selectedDay = maxDay;
+                            if (selectedYear == now.year) {
+                              selectedMonth = index + now.month;
+                            } else {
+                              selectedMonth = index + 1;
                             }
                             setState(() {});
                           },
-                          children: months
-                              .map((month) => Center(child: Text(month)))
-                              .toList(),
+                          children: monthWidgets,
                         );
                       },
                     ),
@@ -156,19 +177,11 @@ class DateAndTimePickerField extends StatelessWidget {
                       builder: (context, setState) {
                         return CupertinoPicker(
                           scrollController: FixedExtentScrollController(
-                            initialItem: 0,
+                            initialItem: selectedYear - now.year,
                           ),
                           itemExtent: 32.0,
                           onSelectedItemChanged: (index) {
                             selectedYear = now.year + index;
-                            final minDay = getMinDay();
-                            final maxDay =
-                                daysInMonth(selectedYear, selectedMonth);
-                            if (selectedDay < minDay) {
-                              selectedDay = minDay;
-                            } else if (selectedDay > maxDay) {
-                              selectedDay = maxDay;
-                            }
                             setState(() {});
                           },
                           children: years
