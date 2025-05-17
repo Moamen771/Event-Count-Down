@@ -1,0 +1,2 @@
+D:/DEPI Event Count Down/Event-Count-Down/android/app/.cxx/Debug/5d696z2r/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/DEPI Event Count Down/Event-Count-Down/android/app/.cxx/Debug/5d696z2r/arm64-v8a/CMakeFiles/rebuild_cache.dir
