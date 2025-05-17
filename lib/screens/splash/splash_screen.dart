@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
         milliseconds: 2600,
       ),
       () {
-        Get.to(
+        Get.off(
           const NavBarScreen(),
           transition: Transition.fadeIn,
         );
