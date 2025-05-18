@@ -16,10 +16,10 @@ class CustomTimerCountdown extends StatelessWidget {
 
   void _showSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text("Invalid date, event has passed!"),
+      const SnackBar(
+        content: Text("Invalid date, event has passed!"),
         backgroundColor: AppColors.darkColor,
-        duration: const Duration(seconds: 3),
+        duration: Duration(seconds: 3),
       ),
     );
   }
@@ -56,7 +56,7 @@ class CustomTimerCountdown extends StatelessWidget {
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.darkerColor,
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -65,17 +65,17 @@ class CustomTimerCountdown extends StatelessWidget {
           TimerCountdown(
             format: CountDownTimerFormat.daysHoursMinutesSeconds,
             endTime: isPast ? DateTime.now() : targetDate,
-            timeTextStyle: TextStyle(
+            timeTextStyle: const TextStyle(
               color: AppColors.darkColor,
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
-            colonsTextStyle: TextStyle(
+            colonsTextStyle: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
               color: AppColors.darkerColor,
             ),
-            descriptionTextStyle: TextStyle(
+            descriptionTextStyle: const TextStyle(
               color: AppColors.darkerColor,
               fontSize: 16,
             ),
