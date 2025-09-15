@@ -4,12 +4,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'app.dart';
 
 void main() async {
-  WidgetsBinding widgetsFlutterBinding =
-      WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.instance.initialize();
-  FlutterNativeSplash.preserve(
-    widgetsBinding: widgetsFlutterBinding,
-  );
   FlutterNativeSplash.remove();
   runApp(
     const EventCountDown(),
